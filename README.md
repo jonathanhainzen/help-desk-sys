@@ -25,6 +25,7 @@ O objetivo é simular um sistema real de suporte técnico, permitindo abertura, 
 ### Banco de dados
 
 - PostgreSQL
+- Docker
 
 ## Objetivos do projeto
 
@@ -80,6 +81,12 @@ help-desk-sys/
 
 ## Instalação do backend
 
+Suba o PostgreSQL com Docker:
+
+```bash
+docker compose up -d
+```
+
 Acesse a pasta do backend:
 
 ```bash
@@ -101,7 +108,7 @@ cp .env.example .env
 Configure a variável `DATABASE_URL` no `.env`:
 
 ```env
-DATABASE_URL="postgresql://postgres:senha@localhost:5432/helpdesk?schema=public"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/helpdesk?schema=public"
 JWT_SECRET="troque-este-segredo"
 PORT=3000
 ```

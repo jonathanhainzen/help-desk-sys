@@ -81,10 +81,26 @@ help-desk-sys/
 
 ## Instalação do backend
 
-Suba o PostgreSQL com Docker:
+Use uma das opções abaixo para disponibilizar o PostgreSQL.
+
+### Opção 1: PostgreSQL com Docker
 
 ```bash
 docker compose up -d
+```
+
+### Opção 2: PostgreSQL local
+
+Instale o PostgreSQL no Windows e crie um banco chamado `helpdesk`.
+
+Dados esperados pela configuração padrão:
+
+```txt
+Host: localhost
+Porta: 5432
+Database: helpdesk
+Usuário: postgres
+Senha: postgres
 ```
 
 Acesse a pasta do backend:
@@ -139,6 +155,47 @@ Resposta esperada:
   "service": "help-desk-sys-api"
 }
 ```
+
+## Endpoints iniciais
+
+### Health check
+
+```txt
+GET http://localhost:3000/health
+```
+
+### Cadastro de usuário
+
+```txt
+POST http://localhost:3000/auth/register
+```
+
+Body:
+
+```json
+{
+  "name": "Jonathan",
+  "email": "jonathan@example.com",
+  "password": "123456"
+}
+```
+
+### Login
+
+```txt
+POST http://localhost:3000/auth/login
+```
+
+Body:
+
+```json
+{
+  "email": "jonathan@example.com",
+  "password": "123456"
+}
+```
+
+As rotas de autenticação retornam o usuário sem a senha e um token JWT.
 
 ## Modelagem inicial
 

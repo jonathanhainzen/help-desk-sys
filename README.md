@@ -1,17 +1,13 @@
-# help-desk-sys
-Sistema HelpDesk Node.js + React
+# Help Desk System
 
-# Help Desk / Ticket System
+Sistema de chamados Help Desk desenvolvido para estudo, prática full stack e portfólio.
 
-Sistema de chamados (Help Desk) desenvolvido para estudo e portfólio, utilizando uma arquitetura full stack com Node.js, React e PostgreSQL.
+O objetivo é simular um sistema real de suporte técnico, permitindo abertura, gerenciamento e acompanhamento de tickets.
 
-O objetivo do projeto é simular um sistema real de suporte técnico, permitindo abertura, gerenciamento e acompanhamento de tickets/chamados.
+## Tecnologias
 
----
+### Backend
 
-# 🚀 Tecnologias
-
-## Backend
 - Node.js
 - Express.js
 - PostgreSQL
@@ -19,36 +15,36 @@ O objetivo do projeto é simular um sistema real de suporte técnico, permitindo
 - JWT Authentication
 - Bcrypt
 
-## Frontend
+### Frontend
+
 - React
 - Vite
 - Axios
 - React Router DOM
 
-## Banco de Dados
+### Banco de dados
+
 - PostgreSQL
 
----
-
-# 🎯 Objetivos do Projeto
+## Objetivos do projeto
 
 - Aprender desenvolvimento full stack
 - Praticar criação de APIs REST
 - Trabalhar com autenticação JWT
 - Utilizar PostgreSQL em um projeto real
-- Aprender integração entre frontend e backend
-- Criar um projeto profissional para GitHub/portfólio
+- Integrar frontend e backend
+- Criar um projeto profissional para GitHub e portfólio
 
----
+## Funcionalidades planejadas
 
-# 📚 Funcionalidades
+### Usuários
 
-## Usuários
 - Cadastro de usuários
 - Login com autenticação JWT
 - Controle de sessão
 
-## Tickets
+### Tickets
+
 - Criar chamado
 - Listar chamados
 - Atualizar status
@@ -56,129 +52,131 @@ O objetivo do projeto é simular um sistema real de suporte técnico, permitindo
 - Adicionar comentários
 - Filtrar tickets
 
-## Dashboard
+### Dashboard
+
 - Quantidade de tickets abertos
 - Tickets finalizados
 - Tickets por prioridade
 
----
+## Estrutura do projeto
 
-# 🏗️ Estrutura do Projeto
-
-```bash
-help-desk-system/
-│
+```txt
+help-desk-sys/
 ├── backend/
+│   ├── prisma/
+│   │   └── schema.prisma
 │   ├── src/
 │   │   ├── controllers/
-│   │   ├── routes/
+│   │   ├── lib/
 │   │   ├── middlewares/
+│   │   ├── routes/
 │   │   ├── services/
+│   │   ├── app.js
 │   │   └── server.js
-│   │
-│   ├── prisma/
 │   └── package.json
-│
 ├── frontend/
-│   ├── src/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── services/
-│   │   └── App.jsx
-│   │
-│   └── package.json
-│
 └── README.md
+```
 
+## Instalação do backend
 
-🧠 Conceitos Praticados
-REST API
-CRUD completo
-Relacionamentos SQL
-Middlewares
-Autenticação e autorização
-Hash de senha
-Organização de projeto
-Consumo de API no React
-Componentização
-Gerenciamento de estado
-⚙️ Instalação
-Clone o repositório
-git clone https://github.com/SEU-USUARIO/help-desk-system.git
-🔧 Backend
-Acesse a pasta backend
+Acesse a pasta do backend:
+
+```bash
 cd backend
-Instale as dependências
+```
+
+Instale as dependências:
+
+```bash
 npm install
-Configure o arquivo .env
-DATABASE_URL="postgresql://postgres:senha@localhost:5432/helpdesk"
-JWT_SECRET="secret"
-Execute as migrations
-npx prisma migrate dev
-Inicie o servidor
+```
+
+Crie o arquivo `.env` com base no exemplo:
+
+```bash
+cp .env.example .env
+```
+
+Configure a variável `DATABASE_URL` no `.env`:
+
+```env
+DATABASE_URL="postgresql://postgres:senha@localhost:5432/helpdesk?schema=public"
+JWT_SECRET="troque-este-segredo"
+PORT=3000
+```
+
+Execute as migrations:
+
+```bash
+npm run prisma:migrate
+```
+
+Inicie o servidor:
+
+```bash
 npm run dev
+```
 
-Servidor backend:
+Endpoint inicial:
 
-http://localhost:3000
-💻 Frontend
-Acesse a pasta frontend
-cd frontend
-Instale as dependências
-npm install
-Execute o projeto
-npm run dev
+```txt
+GET http://localhost:3000/health
+```
 
-Frontend:
+Resposta esperada:
 
-http://localhost:5173
-🗄️ Modelagem Inicial do Banco
-User
-id
-name
-email
-password
-createdAt
-Ticket
-id
-title
-description
-status
-priority
-userId
-createdAt
-Comment
-id
-message
-ticketId
-userId
-createdAt
-🔐 Autenticação
+```json
+{
+  "status": "ok",
+  "service": "help-desk-sys-api"
+}
+```
 
-O projeto utiliza:
+## Modelagem inicial
 
-JWT Token
-Senhas criptografadas com bcrypt
-Middleware de autenticação
-📌 Melhorias Futuras
-Upload de anexos
-Sistema de permissões
-Dashboard avançado
-Notificações
-Deploy com Docker
-Testes automatizados
-Swagger Documentation
-📷 Screenshots
+### User
 
-Em breve...
+- id
+- name
+- email
+- password
+- createdAt
+- updatedAt
 
-📄 Licença
+### Ticket
 
-Projeto desenvolvido apenas para fins de estudo e portfólio.
+- id
+- title
+- description
+- status
+- priority
+- userId
+- createdAt
+- updatedAt
 
-👨‍💻 Autor
+### Comment
+
+- id
+- message
+- ticketId
+- userId
+- createdAt
+- updatedAt
+
+## Melhorias futuras
+
+- Upload de anexos
+- Sistema de permissões
+- Dashboard avançado
+- Notificações
+- Deploy com Docker
+- Testes automatizados
+- Documentação Swagger
+
+## Autor
 
 Jonathan Hainzenreder
 
-LinkedIn:(https://www.linkedin.com/in/jonathan-hainzenreder/)
-GitHub: https://github.com/jonathanhainzen
+- LinkedIn: <https://www.linkedin.com/in/jonathan-hainzenreder/>
+- GitHub: <https://github.com/jonathanhainzen>

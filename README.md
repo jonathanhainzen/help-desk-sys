@@ -197,6 +197,31 @@ Body:
 
 As rotas de autenticação retornam o usuário sem a senha e um token JWT.
 
+### Usuário autenticado
+
+```txt
+GET http://localhost:3000/auth/me
+```
+
+Header:
+
+```txt
+Authorization: Bearer SEU_TOKEN
+```
+
+Resposta esperada:
+
+```json
+{
+  "user": {
+    "id": "uuid-do-usuario",
+    "name": "Jonathan",
+    "email": "jonathan@example.com",
+    "createdAt": "2026-05-27T00:00:00.000Z"
+  }
+}
+```
+
 ## Modelagem inicial
 
 ### User

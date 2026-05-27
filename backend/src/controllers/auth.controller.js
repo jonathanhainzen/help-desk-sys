@@ -20,7 +20,12 @@ async function login(req, res, next) {
   }
 }
 
+async function me(req, res) {
+  res.status(200).json({ user: req.user });
+}
+
 module.exports = {
   login,
+  me,
   register,
 };

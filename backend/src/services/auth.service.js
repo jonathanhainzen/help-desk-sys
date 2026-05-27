@@ -105,4 +105,5 @@ async function loginUser({ email, password }) {
 module.exports = {
   loginUser,
   registerUser,
+  sanitizeUser,
 };

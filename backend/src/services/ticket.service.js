@@ -20,6 +20,24 @@ const ticketInclude = {
   },
 };
 
+const ticketDetailInclude = {
+  ...ticketInclude,
+  comments: {
+    orderBy: {
+      createdAt: "asc",
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  },
+};
+
 function notFoundError() {
   const error = new Error("Ticket was not found");
   error.statusCode = 404;
@@ -99,7 +117,7 @@ async function getTicketById(userId, ticketId) {
       id: ticketId,
       userId,
     },
-    include: ticketInclude,
+    include: ticketDetailInclude,
   });
 
   if (!ticket) {
@@ -107,6 +125,33 @@ async function getTicketById(userId, ticketId) {
   }
 
   return ticket;
+}
+
+async function createTicketComment(userId, ticketId, { message }) {
+  await getTicketById(userId, ticketId);
+
+  if (!message || !message.trim()) {
+    const error = new Error("Comment message is required");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  return prisma.comment.create({
+    data: {
+      message: message.trim(),
+      ticketId,
+      userId,
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
 }
 
 async function updateTicket(userId, ticketId, data) {
@@ -158,6 +203,7 @@ async function updateTicket(userId, ticketId, data) {
 }
 
 module.exports = {
+  createTicketComment,
   createTicket,
   getTicketById,
   listTickets,

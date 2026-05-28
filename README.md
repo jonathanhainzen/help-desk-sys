@@ -316,6 +316,28 @@ Body:
 
 Todos os campos do body são opcionais, mas pelo menos um campo válido deve ser enviado.
 
+### Adicionar comentário ao ticket
+
+```txt
+POST http://localhost:3000/tickets/:id/comments
+```
+
+Header:
+
+```txt
+Authorization: Bearer SEU_TOKEN
+```
+
+Body:
+
+```json
+{
+  "message": "Chamado recebido, iniciando análise."
+}
+```
+
+Os comentários são retornados junto ao detalhe do ticket em `GET /tickets/:id`.
+
 ## Modelagem inicial
 
 ### User

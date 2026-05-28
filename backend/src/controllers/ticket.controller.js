@@ -1,4 +1,5 @@
 const {
+  createTicketComment,
   createTicket,
   getTicketById,
   listTickets,
@@ -45,8 +46,19 @@ async function update(req, res, next) {
   }
 }
 
+async function createComment(req, res, next) {
+  try {
+    const comment = await createTicketComment(req.user.id, req.params.id, req.body);
+
+    res.status(201).json({ comment });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   create,
+  createComment,
   getById,
   list,
   update,

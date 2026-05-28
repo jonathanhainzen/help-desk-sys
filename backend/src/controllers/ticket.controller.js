@@ -1,4 +1,9 @@
-const { createTicket, listTickets } = require("../services/ticket.service");
+const {
+  createTicket,
+  getTicketById,
+  listTickets,
+  updateTicket,
+} = require("../services/ticket.service");
 
 async function create(req, res, next) {
   try {
@@ -20,7 +25,29 @@ async function list(req, res, next) {
   }
 }
 
+async function getById(req, res, next) {
+  try {
+    const ticket = await getTicketById(req.user.id, req.params.id);
+
+    res.status(200).json({ ticket });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function update(req, res, next) {
+  try {
+    const ticket = await updateTicket(req.user.id, req.params.id, req.body);
+
+    res.status(200).json({ ticket });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   create,
+  getById,
   list,
+  update,
 };

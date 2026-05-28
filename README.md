@@ -279,6 +279,43 @@ IN_PROGRESS
 CLOSED
 ```
 
+### Buscar ticket por ID
+
+```txt
+GET http://localhost:3000/tickets/:id
+```
+
+Header:
+
+```txt
+Authorization: Bearer SEU_TOKEN
+```
+
+### Atualizar ticket
+
+```txt
+PATCH http://localhost:3000/tickets/:id
+```
+
+Header:
+
+```txt
+Authorization: Bearer SEU_TOKEN
+```
+
+Body:
+
+```json
+{
+  "title": "Impressora sem conexão",
+  "description": "Impressora do financeiro não imprime",
+  "status": "IN_PROGRESS",
+  "priority": "HIGH"
+}
+```
+
+Todos os campos do body são opcionais, mas pelo menos um campo válido deve ser enviado.
+
 ## Modelagem inicial
 
 ### User

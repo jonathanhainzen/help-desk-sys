@@ -222,6 +222,63 @@ Resposta esperada:
 }
 ```
 
+### Criar ticket
+
+```txt
+POST http://localhost:3000/tickets
+```
+
+Header:
+
+```txt
+Authorization: Bearer SEU_TOKEN
+```
+
+Body:
+
+```json
+{
+  "title": "Notebook sem acesso",
+  "description": "Usuário não consegue acessar o notebook corporativo",
+  "priority": "HIGH"
+}
+```
+
+Prioridades disponíveis:
+
+```txt
+LOW
+MEDIUM
+HIGH
+```
+
+### Listar tickets
+
+```txt
+GET http://localhost:3000/tickets
+```
+
+Header:
+
+```txt
+Authorization: Bearer SEU_TOKEN
+```
+
+Filtros opcionais:
+
+```txt
+GET http://localhost:3000/tickets?status=OPEN
+GET http://localhost:3000/tickets?priority=HIGH
+```
+
+Status disponíveis:
+
+```txt
+OPEN
+IN_PROGRESS
+CLOSED
+```
+
 ## Modelagem inicial
 
 ### User
